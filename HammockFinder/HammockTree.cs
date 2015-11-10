@@ -150,14 +150,14 @@ namespace HammockFinder
         }
 
         /// <summary>
-        /// Находит гамак, начинающийся в данной вершине максимального размера меньше заданного.
-        /// Это есть ребенок данного гамака
+        ///  Находит гамак, начинающийся в данной вершине максимального размера меньше заданного.
+        ///  Это есть ребенок данного гамака
         /// </summary>
         /// <returns>Гамак</returns>
         /// <param name="gi">Граф</param>
         /// <param name="v">Номер вершины</param>
         /// <param name="size">Размер текущего гамака</param>
-        protected virtual static HammockTree GetChildren(GraphInfo gi, int v, int size)
+        protected virtual HammockTree GetChildren(GraphInfo gi, int v, int size)
         {
             var ans = new HammockTree();
 
@@ -198,6 +198,7 @@ namespace HammockFinder
 
             foreach (var child in Childs)
                 strChilds += child.Identifier + ", ";
+            
             foreach (var sibling in Siblings)
                 strSiblings += sibling.Identifier + ", ";
 
