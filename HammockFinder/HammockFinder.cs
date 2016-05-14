@@ -12,27 +12,20 @@ namespace HammockFinder
 {
     using Graph = List<List<int>>;
 
-    class MainClass
+    public static class HammockFinder
     {
+        /*
         public static void Main()
         {
             var gi = new GraphInfo();
 
-            GetGraph(0, out gi.Gr, out gi.Include);
+            GetGraph(2, out gi.Gr, out gi.Include);
 
             var ham = GraphHelper.GetAllHammocks(gi);
 
             gi.SetAllHammocksToVertexes(ham);
             var root = HammockTree.CreateHammockTree(gi);
             PrintTree(root);
-        }
-
-        public static void PrintTree ( HammockTree v )
-        {
-            Console.WriteLine(v);
-
-            foreach (var child in v.Childs)
-                PrintTree(child);
         }
 
         public static void GetGraph(int index, out Graph gp, out SortedSet<int> include )
@@ -84,11 +77,42 @@ namespace HammockFinder
                     include = new SortedSet<int>(new []{ 0, 3, 6, 9, 10, 12 });
 
                     break;
+                case 2:
+                    for (int i = 0; i < 16; i++)
+                        gp.Add(new List<int>());
+
+                    gp[0] = new List<int> { 1 };
+                    gp[1] = new List<int> { 2 };
+                    gp[2] = new List<int> { 3, 7 };
+                    gp[3] = new List<int> { 4 };
+                    gp[4] = new List<int> { 5 };
+                    gp[5] = new List<int> { 15 };
+                    gp[6] = new List<int> { 12, 11 };
+                    gp[7] = new List<int> { 8 };
+                    gp[8] = new List<int> { 9, 12 };
+                    gp[9] = new List<int> { 10 };
+                    gp[10] = new List<int> { 11 };
+                    gp[11] = new List<int> { 4 };
+                    gp[12] = new List<int> { 13 };
+                    gp[13] = new List<int> { 14 };
+                    gp[14] = new List<int> { 6 };
+
+                    include = new SortedSet<int>(new []{ 1, 3, 5, 7, 9, 11, 12, 14 });
+
+                    break;
                 default:
                     Console.WriteLine("GetGraph ERROR");
                     return;
             }
 
+        }
+*/
+        public static void PrintTree ( HammockTree v )
+        {
+            Console.WriteLine(v);
+
+            foreach (var child in v.Childs)
+                PrintTree(child);
         }
 
         /// <summary>

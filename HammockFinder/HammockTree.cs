@@ -48,6 +48,7 @@ namespace HammockFinder
         /// </summary>
         public HashSet<HammockTree> Siblings;
 
+
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="HammockFinder.HammockTree"/>
         /// </summary>

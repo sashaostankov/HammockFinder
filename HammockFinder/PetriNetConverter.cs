@@ -52,10 +52,10 @@ namespace HammockFinder
             foreach (var node in pn.transitions)
                 indexes.Add(node, indexes.Count);
             
-            vertexes.AddRange(MainClass.GetRange<Figure>(indexes.Count));
-            incoming.AddRange(MainClass.GetRange<int>(indexes.Count));
-            outgoing.AddRange(MainClass.GetRange<int>(indexes.Count));
-            gp.AddRange(MainClass.GetRange<List<int>>(indexes.Count));
+            vertexes.AddRange(HammockFinder.GetRange<Figure>(indexes.Count));
+            incoming.AddRange(HammockFinder.GetRange<int>(indexes.Count));
+            outgoing.AddRange(HammockFinder.GetRange<int>(indexes.Count));
+            gp.AddRange(HammockFinder.GetRange<List<int>>(indexes.Count));
 
             foreach (var item in indexes)
                 vertexes[item.Value] = item.Key;
@@ -73,15 +73,14 @@ namespace HammockFinder
                 if (incoming[i] == 0 && outgoing[i] > 0)
                 {
                     if (start != -1)
-                        throw new Exception("More one Figure have zero incoming arcs");
+                        throw new Exception("More than one Figure have zero incoming arcs");
 
                     start = i;
                 }
-
                 if (outgoing[i] == 0 && incoming[i] > 0)
                 {
                     if (end != -1)
-                        throw new Exception("More one Figure have zero outgoing arcs");
+                        throw new Exception("More than one Figure have zero outgoing arcs");
 
                     end = i;
                 }
@@ -89,20 +88,9 @@ namespace HammockFinder
 
             if (start == -1 || end == -1 || start == end)
                 throw new Exception("The Net does not have start or end");
-
-            indexes[vertexes[0]] = start;
-            indexes[vertexes[start]] = 0;
-
-            indexes[vertexes[vertexes.Count - 1]] = end;
-            indexes[vertexes[end]] = vertexes.Count - 1;
-
-            var t = vertexes[0];
-            vertexes[0] = vertexes[start];
-            vertexes[start] = t;
-
-            t = vertexes[end];
-            vertexes[end] = vertexes[vertexes.Count - 1];
-            vertexes[vertexes.Count - 1] = t;
+            
+            gi.StartVertex = start;
+            gi.EndVertex = end;
 
             foreach (var arc in pn.arcs)
                 gp[indexes[arc.From]].Add(indexes[arc.To]);

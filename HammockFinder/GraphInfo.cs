@@ -45,11 +45,6 @@ namespace HammockFinder
         public HammockTree Root;
 
         /// <summary>
-        /// Сеть Петри.
-        /// </summary>
-        public PetriNet PNet;
-
-        /// <summary>
         /// По индексу возвращает объект.
         /// Index -> Figure.
         /// </summary>
@@ -71,6 +66,16 @@ namespace HammockFinder
         }
 
         /// <summary>
+        /// The start vertex.
+        /// </summary>
+        public int StartVertex;
+
+        /// <summary>
+        /// The end vertex.
+        /// </summary>
+        public int EndVertex;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="HammockFinder.GraphInfo"/> class.
         /// </summary>
         public GraphInfo()
@@ -84,7 +89,6 @@ namespace HammockFinder
 
             Root = new HammockTree();
 
-            PNet = new PetriNet();
             Vertexes = new List<Figure>();
             Indexes = new SortedDictionary<Figure, int>(new Comparator());
         }
@@ -94,7 +98,7 @@ namespace HammockFinder
         /// </summary>
         /// <returns>Количество вершин в гамаке</returns>
         /// <param name="hammock">Гамак</param>
-        protected int AddHammockToVertexes(HammockTree hammock)
+        int AddHammockToVertexes(HammockTree hammock)
         {
             var q = new Queue<int>();
             int count = 0;

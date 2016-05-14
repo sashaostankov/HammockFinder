@@ -39,8 +39,8 @@ namespace HammockFinder
         /// </summary>
         /// <returns>Множество доминаторов для каждой вершинв графа</returns>
         /// <param name="gp">Граф в виде списков смежности</param>
-        /// <param name="start">Номер начальной вершины</param>
-        static List<SortedSet<int>> CalcDynamicOnGraph(Graph gp, int start = 0)
+        /// <param name="end">Номер конечной вершины графа</param>
+        static List<SortedSet<int>> CalcDynamicOnGraph(Graph gp, int end)
         {
             var dp = new List<SortedSet<int>>();
 
@@ -51,8 +51,8 @@ namespace HammockFinder
                 for (int j = 0; j < gp.Count; j++)
                     dp[i].Add(j);
 
-            dp[start].Clear();
-            dp[start].Add(start);
+            dp[end].Clear();
+            dp[end].Add(end);
 
             bool change;
 			
@@ -65,7 +65,9 @@ namespace HammockFinder
                     int oldSize = dp[i].Count;
 
                     foreach (int next in gp[i])
+                    {
                         dp[i].IntersectWith(dp[next]);
+                    }
 
                     dp[i].Add(i);
 
@@ -123,9 +125,9 @@ namespace HammockFinder
         public static List<SortedSet<int>> GetAllHammocks(GraphInfo gi)
         {
             var gp = gi.Gr;
-            var tgp = TransposeGraph(gp);
-            var dp1 = CalcDynamicOnGraph(gp, gp.Count - 1);
-            var dp2 = CalcDynamicOnGraph(tgp);
+            var tgp = TransposeGraph(gp); 
+            var dp1 = CalcDynamicOnGraph(gp,  gi.EndVertex);
+            var dp2 = CalcDynamicOnGraph(tgp, gi.StartVertex);
 
             // Оставляем только нужные вершины (переходы)
             if (gi.Include != null)
@@ -146,6 +148,7 @@ namespace HammockFinder
                 dp1[i].Remove(i);
 
                 var newSet = new SortedSet<int>();
+
                 foreach (int v in dp1[i])
                     if (dp2[v].Contains(i))
                         newSet.Add(v);

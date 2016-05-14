@@ -52,12 +52,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GraphHelper.cs" />
     <Compile Include="GraphInfo.cs" />
     <Compile Include="HammockTree.cs" />
     <Compile Include="PetriNetConverter.cs" />
+    <Compile Include="HammockFinder.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
