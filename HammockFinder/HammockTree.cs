@@ -166,19 +166,19 @@ namespace HammockFinder
                 if (gi.ListOfHammocks[node].Size > ans.Size &&
                     gi.ListOfHammocks[node].Size < size)
                     ans = gi.ListOfHammocks[node];
-            
+
             return ans;
         }
 
         /// <summary>
-        /// Ищет всех детей своего предка в дереве гамаков, 
+        /// Ищет всех детей своего предка в дереве гамаков,
         /// которые пересекаются с этим гамаком
         /// </summary>
         protected virtual void FindSiblings()
         {
             if (Parent == null)
                 return;
-            
+
             foreach (var child in Parent.Childs)
             {
                 if (child.End == Start)
@@ -199,7 +199,7 @@ namespace HammockFinder
 
             foreach (var child in Childs)
                 strChilds += child.Identifier + ", ";
-            
+
             foreach (var sibling in Siblings)
                 strSiblings += sibling.Identifier + ", ";
 

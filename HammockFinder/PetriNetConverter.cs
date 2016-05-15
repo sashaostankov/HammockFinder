@@ -48,10 +48,10 @@ namespace HammockFinder
 
             foreach (var node in pn.places)
                 indexes.Add(node, indexes.Count);
-        
+
             foreach (var node in pn.transitions)
                 indexes.Add(node, indexes.Count);
-            
+
             vertexes.AddRange(HammockFinder.GetRange<Figure>(indexes.Count));
             incoming.AddRange(HammockFinder.GetRange<int>(indexes.Count));
             outgoing.AddRange(HammockFinder.GetRange<int>(indexes.Count));
@@ -88,7 +88,7 @@ namespace HammockFinder
 
             if (start == -1 || end == -1 || start == end)
                 throw new Exception("The Net does not have start or end");
-            
+
             gi.StartVertex = start;
             gi.EndVertex = end;
 

@@ -84,7 +84,7 @@ namespace HammockFinder
 
             Include = new SortedSet<int>();
             ListOfHammocks = new List<HammockTree>();
-            HammocksAtVertex = new List<SortedSet<int>>(); 
+            HammocksAtVertex = new List<SortedSet<int>>();
             HammocksStartedAtVertex = new List<SortedSet<int>>();
 
             Root = new HammockTree();
@@ -133,7 +133,7 @@ namespace HammockFinder
         public void SetAllHammocksToVertexes(List<SortedSet<int>> hammocks)
         {
             HammocksStartedAtVertex = new List<SortedSet<int>>();
-            HammocksAtVertex = new List<SortedSet<int>>(); 
+            HammocksAtVertex = new List<SortedSet<int>>();
             ListOfHammocks = new List<HammockTree>();
 
             for (int i = 0; i < hammocks.Count; i++)

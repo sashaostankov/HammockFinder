@@ -21,7 +21,7 @@ namespace HammockFinder
         static Graph TransposeGraph(Graph gp)
         {
             var res = new Graph();
-         
+
             for (int i = 0; i < gp.Count; i++)
                 res.Add(new List<int>());
 
@@ -55,7 +55,7 @@ namespace HammockFinder
             dp[end].Add(end);
 
             bool change;
-			
+
             do
             {
                 change = false;
@@ -108,7 +108,7 @@ namespace HammockFinder
                     {
                         if (cur == start && next == end)
                             continue;
-                        
+
                         q.Enqueue(next);
                         used.Add(next);
                     }
@@ -125,8 +125,8 @@ namespace HammockFinder
         public static List<SortedSet<int>> GetAllHammocks(GraphInfo gi)
         {
             var gp = gi.Gr;
-            var tgp = TransposeGraph(gp); 
-            var dp1 = CalcDynamicOnGraph(gp,  gi.EndVertex);
+            var tgp = TransposeGraph(gp);
+            var dp1 = CalcDynamicOnGraph(gp, gi.EndVertex);
             var dp2 = CalcDynamicOnGraph(tgp, gi.StartVertex);
 
             // Оставляем только нужные вершины (переходы)
