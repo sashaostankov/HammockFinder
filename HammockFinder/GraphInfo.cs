@@ -48,7 +48,7 @@ namespace HammockFinder
         /// По индексу возвращает объект.
         /// Index -> Figure.
         /// </summary>
-        public List<Figure> Vertexes;
+        public List<Figure> Vertices;
 
         /// <summary>
         /// По объекты возвращает индекс.
@@ -89,7 +89,7 @@ namespace HammockFinder
 
             Root = new HammockTree();
 
-            Vertexes = new List<Figure>();
+            Vertices = new List<Figure>();
             Indexes = new SortedDictionary<Figure, int>(new Comparator());
         }
 
@@ -98,7 +98,7 @@ namespace HammockFinder
         /// </summary>
         /// <returns>Количество вершин в гамаке</returns>
         /// <param name="hammock">Гамак</param>
-        int AddHammockToVertexes(HammockTree hammock)
+        int AddHammockToVertices(HammockTree hammock)
         {
             var q = new Queue<int>();
             int count = 0;
@@ -130,7 +130,7 @@ namespace HammockFinder
         /// Устанавливает всем вершинам множества гамаков, к которым они принадлежат.
         /// </summary>
         /// <param name="hammocks">Множество гамаков</param>
-        public void SetAllHammocksToVertexes(List<SortedSet<int>> hammocks)
+        public void SetAllHammocksToVertices(List<SortedSet<int>> hammocks)
         {
             HammocksStartedAtVertex = new List<SortedSet<int>>();
             HammocksAtVertex = new List<SortedSet<int>>();
@@ -150,7 +150,7 @@ namespace HammockFinder
             foreach (var node in ListOfHammocks)
             {
                 node.Identifier = id++;
-                node.Size = AddHammockToVertexes(node);
+                node.Size = AddHammockToVertices(node);
                 HammocksStartedAtVertex[node.Start].Add(node.Identifier);
             }
         }

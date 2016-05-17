@@ -40,7 +40,7 @@ namespace HammockFinder
 
             var gp = gi.Gr; // Graph
             var indexes = gi.Indexes; // Figure -> index
-            var vertexes = gi.Vertexes; // index -> Figure
+            var vertexes = gi.Vertices; // index -> Figure
             var include = gi.Include;
 
             var incoming = new List<int>();

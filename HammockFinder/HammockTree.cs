@@ -90,7 +90,7 @@ namespace HammockFinder
             foreach (var node in gi.ListOfHammocks)
                 if (node.Size > root.Size)
                     root = node;
-
+            
             root.FindChildren(gi);
 
             return root;
@@ -144,6 +144,7 @@ namespace HammockFinder
                         q.Enqueue(next);
                     }
                 }
+
             }
 
             foreach (var child in Childs)

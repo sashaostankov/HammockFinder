@@ -4,7 +4,7 @@
 // sashaostankov@gmail.com
 // (c) 2015
 //
-
+using System;
 using System.Collections.Generic;
 
 namespace HammockFinder
@@ -56,6 +56,13 @@ namespace HammockFinder
 
             bool change;
 
+            var changed = new List<bool>(gp.Count);
+
+            for (int i = 0; i < gp.Count; i++)
+                changed.Add(false);
+
+            changed[end] = true;
+ 
             do
             {
                 change = false;
@@ -66,13 +73,28 @@ namespace HammockFinder
 
                     foreach (int next in gp[i])
                     {
-                        dp[i].IntersectWith(dp[next]);
+                        if ( changed[next] )
+                        {
+                            dp[i].IntersectWith(dp[next]);
+                        }
                     }
 
                     dp[i].Add(i);
 
+                    if ( i != end )
+                        changed[i] = (oldSize != dp[i].Count);
+
                     if (oldSize != dp[i].Count)
                         change = true;
+                }
+
+                for ( int i = 0; i < gp.Count; i++ ){
+                    Console.Write("vertex {0}:\t", i);
+
+                    foreach(int v in dp[i] )
+                        Console.Write(" {0}", v);
+
+                    Console.WriteLine("");
                 }
             }
             while (change);
@@ -104,6 +126,7 @@ namespace HammockFinder
                     return true;
 
                 foreach (int next in hammocks[cur])
+                {
                     if (!used.Contains(next))
                     {
                         if (cur == start && next == end)
@@ -112,6 +135,7 @@ namespace HammockFinder
                         q.Enqueue(next);
                         used.Add(next);
                     }
+                }
             }
 
             return false;
